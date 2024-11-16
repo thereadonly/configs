@@ -1,0 +1,20 @@
+# Enter required admin name and pswd and `docker compose up -d` to pull the image and set it at http://localhost:9090/
+
+version: '3.7'
+services:
+  vtigeropensource:
+    ports:
+      - "9090:80"
+    image: vtigercrm/vtigercrm-8.3.0:latest
+    environment:
+      mysql_user: <ENTER_ADMIN>
+      mysql_pass: <ENTER_PASSWORD>
+    volumes:
+      - vtiger_source_volume:/var/www/html/
+      - vtiger_mysql_data_volume:/var/lib/mysql
+
+volumes:
+  vtiger_source_volume:          
+    name:   vtiger_source_volume 
+  vtiger_mysql_data_volume:
+    name: vtiger_mysql_data_volume
